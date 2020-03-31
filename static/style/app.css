@@ -1,0 +1,118 @@
+.bg-gradient {
+    background: rgb(97,143,251);
+    background: linear-gradient(153deg, rgba(97,143,251,1) 0%, rgba(31,85,210,1) 100%);
+}
+
+.btn-home {
+    /* border-radius: 50px !important; */
+    border-color: white !important;
+    color: white !important;
+    color: rgb(97,143,251) !important;
+}
+
+.account-table th {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight: normal;
+    border-spacing: 0;
+}
+
+.account-table td {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight: normal;
+    border-spacing: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    background: #F0F2F5 !important;
+}
+/*
+.demo {
+    margin-bottom: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}*/
+
+
+.emote-color {
+    font-size: large;
+    color: rgb(253, 179, 20);
+}
+
+.card-shadow {
+    -webkit-box-shadow: -2px 38px 52px -47px rgba(156,156,156,1);
+    -moz-box-shadow: -2px 38px 52px -47px rgba(156,156,156,1);
+    box-shadow: -2px 38px 52px -47px rgba(156,156,156,1);
+    border-radius: 10px !important;
+    /* border: none !important; */
+}
+
+.sh {
+    -webkit-box-shadow: 0px 3px 5px rgba(156,156,156,1);
+    -moz-box-shadow: 0px 3px 5px rgba(156,156,156,1);
+    box-shadow: 0px 3px 5px rgba(156,156,156,5) !important;
+    border: 0px !important;
+}
+
+.dropdown-toggle::after {
+    content: none !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input#num {
+    border-color: #456abd;
+    border-radius: 20px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+
+
+.modal-backdrop.show {
+    opacity: .8 !important;
+}
+.modal-backdrop {
+    background-color: #1e1e33 !important;
+}
+
+.main-navigation {
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
