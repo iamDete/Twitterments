@@ -1,0 +1,40 @@
+{% load static %}
+{% load humanize %}
+<table id="table_view"  class="table table-striped bg-light table-bordered" style="width:100%">
+  <thead>
+    <tr>
+        <th>Date posted</th>
+        <th>Tweets</th>
+        <th>Retweets</th>
+        <th>Likes</th>
+        <th>source</th>
+        <th>Sentiments</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for data in data_try %}
+    <tr>
+        <td style="width: 16.66%">{{ data.date }}</td>
+        <td >{{ data.tweets }}</td>
+        <td>{{ data.retweets|intcomma }}</td>
+        <td>{{ data.likes|intcomma }}</td>
+        <td style="width: 16.66%">{{ data.source }}</td>
+        <td>
+          {% if  data.sentiment  == 1 %}
+                <i class="fas fa-smile emote-color"></i>
+                <span>Positive</span>
+          {% elif data.sentiment == 0 %}
+                 <i class="fas fa-meh emote-color"></i>
+                <span>Neutral</span>
+          {% else %}
+                 <i class="fas fa-frown emote-color"></i>
+                <span>Negative</span>
+          {% endif %}
+        </td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+
+</table>

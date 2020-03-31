@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+  Home
+{% endblock title %}
+
+{% block content %}
+    <div class="jumbotron shadow jumbotron-fluid bg-gradient">
+            
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-4  text-left text-white">Twitter Sentiments Analysis</h1>
+
+                    <form class="mt-5 mb-2" action="account_tweet_analysis" method="GET">
+
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control w-50"  value="{{ search_query }}" name="search_query" placeholder="Enter Username" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                              <input type="hidden" value="20" name="results"/>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary btn-home text-white" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <small class="text-white text-left ml-1">Enter the username of twitter account to start automated process of analyzing tweets.</small>
+    
+    
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+    
+                    <div>
+                        <img src="{% static 'img/5e7dcf236bcbd.png' %}" width="110%" alt="" srcset="">
+                    </div>
+    
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Analysis{% endblock title %}
+
+{% block content %}
+    {% if username == 'user_not_found' %}
+        <div class="container text-center">
+
+        <div class="row mt-5 h-100">
+            <div class="col-sm-12 my-auto">
+                <img src="{% static 'img/hugo-searching.png' %}" class="img-fluid mt-5" width="500px" alt="no results found" >
+                <h4>No search results</h4>
+                <p>We couldn't find what you looking for</p>
+            </div>
+         </div>
+
+        </div>
+    {% else %}
+
+        <div class="container pt-1 mt-5">
+            <div class="jumbotron mt-5 mb-3 rounded p-4 jumbotron-fluid bg-gradient">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <img src="{{ display_pic }}" width="80px" class="rounded-circle" alt="display-picture">
+
+                    <h3 class="text-white mt-2">{{ username }}</h3>
+                    <table style="margin-left:auto;margin-right:auto;" class="table account-table text-center table-borderless text-white w-25">
+                        <tfoot>
+                          <tr>
+                            <th class="px-2">Followers</th>
+                            <th class="px-2">Following</th>
+                            <th class="px-2">Tweets</th>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                          <tr>
+                            <td>{{ followers }}</td>
+                            <td>{{ following }}</td>
+                            <td>{{ tweet_count }}</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-white" >{{ description }}</p>
+                </div>
+                <div class="col-md-6">
+
+                       <div class="card">
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col" align="right">
+
+                                    <span>
+                                        <button href="#" class="btn btn-primary sh rounded-circle" data-toggle="modal" data-target="#graphModal"><i class="fas fa-chart-line"></i></button>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <table style="margin-left:auto;margin-right:auto;" class="table account-table text-center table-borderless w-25">
+                                <tfoot>
+                                  <tr>
+                                    <th class="px-2">Positive</th>
+                                    <th class="px-2">Neutral</th>
+                                    <th class="px-2">Negative</th>
+                                  </tr>
+                                </tfoot>
+                                <tbody>
+                                  <tr>
+                                    <td><h2><span id="noPos"></span></h2></td>
+                                    <td><h2><span id="noNeu"></span></h2></td>
+                                    <td><h2><span id="noNeg"></span></h2></td>
+                                  </tr>
+                            </table>
+
+                            <div class="row">
+                                <div class="text-center col-md-12 d-flex justify-content-center">
+                                    <div align="center">
+                                        <form class="form-inline" action="account_tweet_analysis" method="GET">
+                                            <div class="form-group">
+                                                <label for="num" class="mr-3">No of tweets that are analyze</label>
+                                                <input type="hidden" class="w-50"  value="{{ username }}" name="search_query" placeholder="Enter Username" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                                                <input type="number" id="num" value="{{ results }}"  name="results" class="form-control small-no input-sm text-center rounded"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="graphModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+          <div class="modal-body text-center" style="overflow-x:scroll;" >
+
+              <img src="data:image/png;base64,{{ retweet_graph }}" style="width:1500px"  alt="graph-image" >
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+        <nav>
+          <div class="nav nav-tabs justify-content-end nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-card-tab" data-toggle="tab" href="#nav-card" role="tab" aria-controls="nav-card" aria-selected="true"><i class="fas fa-table"></i> Card view</a>
+            <a class="nav-item nav-link" id="nav-table-tab" data-toggle="tab" href="#nav-table" role="tab" aria-controls="nav-table" aria-selected="false"><i class="fas fa-list"></i> Table view</a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-card" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="row mt-3">
+
+                  <div class="col">
+                         <p>Showing <span id="totalRes">{{ results }}</span> out of <span id="realRes">{{ results }}</span> tweets</p>
+                  </div>
+                  <div class="col">
+
+                      <div align="right">
+
+                         <span class="dropdown" id="filter">
+                            <button class="btn p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-sliders-h"></i> Filter
+                            </button>
+                            <div class="dropdown-menu shadow-sm border-1 dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" value="2" href="#">All</a>
+                                <a class="dropdown-item" value="1" href="#">Positive</a>
+                                <a class="dropdown-item" value="0" href="#">Neutral</a>
+                                <a class="dropdown-item" value="-1" href="#">Negative</a>
+                            </div>
+                        </span>
+                    </div>
+                  </div>
+              </div>
+              <div id="macy-container1" class="row">
+
+                    {% include 'partials/_card.html' %}
+
+                </div>
+          </div>
+          <div class="tab-pane fade" id="nav-table" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                <div class="mb-5"></div>
+
+                 {% include 'partials/_table_view.html' %}
+
+                <div class="mb-5"></div>
+
+          </div>
+        </div>
+
+    </div>
+{% endif %}
+
+{% endblock content %}
+
+
+
+
